@@ -14,6 +14,12 @@ import Service.MessageService;
 
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import io.javalin.http.staticfiles.Location;
+
+
+
+
+
 
 /**
  * TODO: You will need to write your own endpoints and handlers for your controller. The endpoints you will need can be
@@ -35,10 +41,19 @@ public class SocialMediaController {
          this.messageService = new MessageService();
      }
 
-     
-     public Javalin startAPI() {
 
-        Javalin app = Javalin.create();
+    public static void main(String[] args) {
+        SocialMediaController controller = new SocialMediaController();
+        controller.startAPI();
+    }
+
+
+    public Javalin startAPI() {
+
+        Javalin app = Javalin.create().start(8080);
+
+        // Enable CORS for all origins and methods
+        // app.config.enableCorsForAllOrigins();
 
         app.post("/register", this::registerHandler);
         app.post("/login", this::loginHandler);
@@ -49,6 +64,47 @@ public class SocialMediaController {
         app.delete("/messages/{message_id}", this::deleteMessageByIdHandler);
         app.patch("/messages/{message_id}", this::updateMessageByIdHandler);
         app.get("/accounts/{account_id}/messages", this::retrieveMessagesByAccountIdHandler);
+
+        app.get("/register", ctx -> {
+            // Add the CORS headers
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+
+            // Process the request
+            // ...
+        });
+
+        app.post("http://localhost:8080/register", ctx -> {
+            // Add the CORS headers
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+
+            // Process the request
+            // ...
+        });
+
+         app.post("/messages", ctx -> {
+            // Add the CORS headers
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+
+            // Process the request
+            // ...
+        });
+
+        app.get("/messages", ctx -> {
+            // Add the CORS headers
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+
+            // Process the request
+            // ...
+        });
+
 
 
         return app;
