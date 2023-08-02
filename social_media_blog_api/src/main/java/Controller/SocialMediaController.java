@@ -41,71 +41,24 @@ public class SocialMediaController {
          this.messageService = new MessageService();
      }
 
-
-    public static void main(String[] args) {
-        SocialMediaController controller = new SocialMediaController();
-        controller.startAPI();
-    }
-
-
     public Javalin startAPI() {
 
-        Javalin app = Javalin.create().start(8080);
-
-        // Enable CORS for all origins and methods
-        // app.config.enableCorsForAllOrigins();
+        Javalin app = Javalin.create(config -> {
+        config.plugins.enableCors(cors -> {
+            cors.add(it -> {
+                it.anyHost();
+            });
+        });
+});
 
         app.post("/register", this::registerHandler);
         app.post("/login", this::loginHandler);
         app.post("/messages", this::messagesCreationHandler);
         app.get("/messages", this::messagesRetrieveHandler);
-
         app.get("/messages/{message_id}", this::retrieveMessageByIdHandler);
         app.delete("/messages/{message_id}", this::deleteMessageByIdHandler);
         app.patch("/messages/{message_id}", this::updateMessageByIdHandler);
         app.get("/accounts/{account_id}/messages", this::retrieveMessagesByAccountIdHandler);
-
-        app.get("/register", ctx -> {
-            // Add the CORS headers
-            ctx.header("Access-Control-Allow-Origin", "*");
-            ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            ctx.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
-
-            // Process the request
-            // ...
-        });
-
-        app.post("http://localhost:8080/register", ctx -> {
-            // Add the CORS headers
-            ctx.header("Access-Control-Allow-Origin", "*");
-            ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            ctx.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
-
-            // Process the request
-            // ...
-        });
-
-         app.post("/messages", ctx -> {
-            // Add the CORS headers
-            ctx.header("Access-Control-Allow-Origin", "*");
-            ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            ctx.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
-
-            // Process the request
-            // ...
-        });
-
-        app.get("/messages", ctx -> {
-            // Add the CORS headers
-            ctx.header("Access-Control-Allow-Origin", "*");
-            ctx.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            ctx.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
-
-            // Process the request
-            // ...
-        });
-
-
 
         return app;
     }
@@ -129,8 +82,6 @@ public class SocialMediaController {
             context.status(400);
         }
     }
-
-
 
     private void loginHandler(Context context) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

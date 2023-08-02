@@ -13,3 +13,54 @@ SELECT * from Message [42104-214]
 2023-08-01 12:08:05 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
 SELECT * from Message [42104-214]
+2023-08-02 00:16:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:16:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:16:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:17:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:17:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:17:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:17:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:17:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:17:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:18:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:18:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:20:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:20:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:20:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:20:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:20:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
+2023-08-02 00:20:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGE" not found (this database is empty); SQL statement:
+SELECT * from Message [42104-214]
