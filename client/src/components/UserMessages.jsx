@@ -1,5 +1,4 @@
-// UserMessages.js
-import  { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import Message from './Message';
 
@@ -17,15 +16,23 @@ const UserMessages = () => {
   };
 
   return (
-    <div>
-      <h2>Messages by User</h2>
-      <input
-        type="text"
-        placeholder="Account ID"
-        value={accountId}
-        onChange={(e) => setAccountId(e.target.value)}
-      />
-      <button onClick={handleGetMessagesByAccountId}>Get Messages</button>
+    <div className="mb-4">
+      <h2 className="text-xl mb-2">Messages by User</h2>
+      <div className="flex mb-2">
+        <input
+          type="text"
+          placeholder="Account ID"
+          value={accountId}
+          onChange={(e) => setAccountId(e.target.value)}
+          className="p-2 border border-gray-300 rounded-l"
+        />
+        <button
+          onClick={handleGetMessagesByAccountId}
+          className="px-4 py-2 bg-blue-500 text-white rounded-r hover:bg-blue-600"
+        >
+          Get Messages
+        </button>
+      </div>
       {userMessages.map((message) => (
         <Message key={message.message_id} message={message} />
       ))}

@@ -1,5 +1,4 @@
-// MessageList.js
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Message from './Message';
 
@@ -19,8 +18,8 @@ const MessageList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>All Messages</h2>
+    <div className="mb-4">
+      <h2 className="text-xl mb-2">All Messages</h2>
       {messages.map((message) => (
         <Message key={message.message_id} message={message} />
       ))}

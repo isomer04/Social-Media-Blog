@@ -1,23 +1,30 @@
-import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import MessageForm from "./components/MessageForm";
 import MessageList from "./components/MessageList";
 import UserMessages from "./components/UserMessages";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App">
-      <RegistrationForm />
-      <LoginForm />
-      <hr />
-      <MessageForm />
-      <hr />
-      <MessageList />
-
-      <h1>User Messages</h1>
-      <UserMessages />
-    </div>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="container mx-auto p-4 flex-grow"> {/* Use flex-grow here */}
+          <Routes>
+            <Route path="/register" element={<RegistrationForm />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/messages" element={<MessageForm />} />
+            <Route path="/messages/all" element={<MessageList />} />
+            <Route path="/messages/user" element={<UserMessages />} />
+            {/* Add more routes as needed */}
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
