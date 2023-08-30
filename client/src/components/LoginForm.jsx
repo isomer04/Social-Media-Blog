@@ -17,7 +17,7 @@ const LoginForm = () => {
       console.log('Login successful:', response.data);
       // Handle success, store user token, redirect, etc.
       // navigate('/', { replace: true });
-      navigate('/user/:username', { replace: true });
+      navigate(`/user/${username}`, { replace: true });
 
 
     } catch (error) {

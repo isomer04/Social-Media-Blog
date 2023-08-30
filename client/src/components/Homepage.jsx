@@ -18,6 +18,8 @@ const Homepage = () => {
       const response = await axios.get(`http://localhost:8080/accounts/username/${username}/userId`);
       setUserId(response.data.userId);
       fetchUserMessages(response.data.userId);
+      console.log('Response:', response.data);
+
     } catch (error) {
       console.error('Error fetching user ID:', error);
     }
@@ -27,6 +29,8 @@ const Homepage = () => {
     try {
       const response = await axios.get(`http://localhost:8080/accounts/${userId}/messages`);
       setUserMessages(response.data);
+      console.log('Response:', response.data);
+
     } catch (error) {
       console.error('Error fetching user messages:', error);
     }

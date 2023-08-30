@@ -17,8 +17,6 @@ function App() {
           <Routes>
           <Route path="/user/:username" element={<Homepage />} />
           {/* <Route path="/" element={<Homepage />} /> */}
-
-
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/messages" element={<MessageForm />} />
