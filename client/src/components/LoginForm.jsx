@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -15,6 +16,10 @@ const LoginForm = () => {
       });
       console.log('Login successful:', response.data);
       // Handle success, store user token, redirect, etc.
+      // navigate('/', { replace: true });
+      navigate('/user/:username', { replace: true });
+
+
     } catch (error) {
       console.error('Login failed:', error.response.data);
       // Handle error, show error message, etc.

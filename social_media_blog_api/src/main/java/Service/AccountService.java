@@ -22,5 +22,14 @@ public class AccountService {
         return accountDAO.loginAccount(account);
     }
     
+    public int retrieveUserIdByUsername(String username) {
+        Account account = accountDAO.getAccountByUsername(username);
+        
+        if (account != null) {
+            return account.getAccount_id(); // Assuming getAccountId() is the method to get the accountId in Account class
+        }
+        
+        return -1; // Indicate user not found
+    }
     
 }

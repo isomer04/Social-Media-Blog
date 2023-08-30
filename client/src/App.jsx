@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Homepage from "./components/Homepage";
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import MessageForm from "./components/MessageForm";
@@ -14,6 +15,10 @@ function App() {
         <Navbar />
         <div className="container mx-auto p-4 flex-grow"> {/* Use flex-grow here */}
           <Routes>
+          <Route path="/user/:username" element={<Homepage />} />
+          {/* <Route path="/" element={<Homepage />} /> */}
+
+
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/messages" element={<MessageForm />} />

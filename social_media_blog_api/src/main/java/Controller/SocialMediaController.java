@@ -14,6 +14,7 @@ import Service.MessageService;
 
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import io.javalin.http.NotFoundResponse;
 import io.javalin.http.staticfiles.Location;
 
 
@@ -53,6 +54,7 @@ public class SocialMediaController {
 
         app.post("/register", this::registerHandler);
         app.post("/login", this::loginHandler);
+        app.get("/accounts/username/:username/userId", this::retrieveUserIdByUsernameHandler);
         app.post("/messages", this::messagesCreationHandler);
         app.get("/messages", this::messagesRetrieveHandler);
         app.get("/messages/{message_id}", this::retrieveMessageByIdHandler);
@@ -97,6 +99,17 @@ public class SocialMediaController {
             context.status(401);
         }
     }
+
+    private void retrieveUserIdByUsernameHandler(Context context) {
+    String username = context.pathParam("username");
+    int userId = accountService.retrieveUserIdByUsername(username);
+    
+    if (userId != -1) {
+        context.status(200).result(String.valueOf(userId));
+    } else {
+        throw new NotFoundResponse("User not found");
+    }
+}
 
     private void messagesCreationHandler(Context context) {
         Message newMessage = context.bodyAsClass(Message.class);

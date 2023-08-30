@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
 
   const handleRegister = async () => {
     try {
@@ -13,7 +15,7 @@ const RegistrationForm = () => {
         password,
       });
       console.log('Registration successful:', response.data);
-      // Handle success, redirect, etc.
+      navigate('/', { replace: true });
     } catch (error) {
       console.error('Registration failed:', error.response.data);
       // Handle error, show error message, etc.
