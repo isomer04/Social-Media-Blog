@@ -25,9 +25,10 @@ public class MessageService {
         Account existedAccount = accountDao.getAccountById(posted_by);
         if (message.getMessage_text().isEmpty()) return null;
 
-        if (message.getMessage_text().isBlank() || message.getMessage_text().length() > 254 || existedAccount == null ) {
-            return null; 
+        if (message.getMessage_text().isBlank() || message.getMessage_text().length() > 512 || existedAccount == null) {
+            return null;
         }
+        
         return messageDao.createMessage(message);
     }
 

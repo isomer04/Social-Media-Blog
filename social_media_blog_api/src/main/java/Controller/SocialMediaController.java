@@ -17,44 +17,44 @@ import io.javalin.http.Context;
 import io.javalin.http.NotFoundResponse;
 import io.javalin.http.staticfiles.Location;
 
-
-
-
-
-
 /**
- * TODO: You will need to write your own endpoints and handlers for your controller. The endpoints you will need can be
+ * TODO: You will need to write your own endpoints and handlers for your
+ * controller. The endpoints you will need can be
  * found in readme.md as well as the test cases. You should
- * refer to prior mini-project labs and lecture materials for guidance on how a controller may be built.
+ * refer to prior mini-project labs and lecture materials for guidance on how a
+ * controller may be built.
  */
 public class SocialMediaController {
     /**
-     * In order for the test cases to work, you will need to write the endpoints in the startAPI() method, as the test
+     * In order for the test cases to work, you will need to write the endpoints in
+     * the startAPI() method, as the test
      * suite must receive a Javalin object from this method.
-     * @return a Javalin app object which defines the behavior of the Javalin controller.
+     * 
+     * @return a Javalin app object which defines the behavior of the Javalin
+     *         controller.
      */
 
-     AccountService accountService;
-     MessageService messageService;
- 
-     public SocialMediaController(){
-         this.accountService = new AccountService();
-         this.messageService = new MessageService();
-     }
+    AccountService accountService;
+    MessageService messageService;
+
+    public SocialMediaController() {
+        this.accountService = new AccountService();
+        this.messageService = new MessageService();
+    }
 
     public Javalin startAPI() {
 
         Javalin app = Javalin.create(config -> {
-        config.plugins.enableCors(cors -> {
-            cors.add(it -> {
-                it.anyHost();
+            config.plugins.enableCors(cors -> {
+                cors.add(it -> {
+                    it.anyHost();
+                });
             });
         });
-});
 
         app.post("/register", this::registerHandler);
         app.post("/login", this::loginHandler);
-        app.get("/accounts/username/:username/userId", this::retrieveUserIdByUsernameHandler);
+        app.get("/accounts/username/{username}/userId", this::retrieveUserIdByUsernameHandler);
         app.post("/messages", this::messagesCreationHandler);
         app.get("/messages", this::messagesRetrieveHandler);
         app.get("/messages/{message_id}", this::retrieveMessageByIdHandler);
@@ -67,9 +67,10 @@ public class SocialMediaController {
 
     /**
      * This is an example handler for an example endpoint.
-     * @param context The Javalin Context object manages information about both the HTTP request and response.
+     * 
+     * @param context The Javalin Context object manages information about both the
+     *                HTTP request and response.
      */
- 
 
     private void registerHandler(Context context) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
@@ -101,15 +102,15 @@ public class SocialMediaController {
     }
 
     private void retrieveUserIdByUsernameHandler(Context context) {
-    String username = context.pathParam("username");
-    int userId = accountService.retrieveUserIdByUsername(username);
-    
-    if (userId != -1) {
-        context.status(200).result(String.valueOf(userId));
-    } else {
-        throw new NotFoundResponse("User not found");
+        String username = context.pathParam("username");
+        int userId = accountService.retrieveUserIdByUsername(username);
+
+        if (userId != -1) {
+            context.status(200).result(String.valueOf(userId));
+        } else {
+            throw new NotFoundResponse("User not found");
+        }
     }
-}
 
     private void messagesCreationHandler(Context context) {
         Message newMessage = context.bodyAsClass(Message.class);
@@ -122,62 +123,57 @@ public class SocialMediaController {
         }
     }
 
-
     private void messagesRetrieveHandler(Context context) {
         List<Message> messages = messageService.retrievMessage();
         context.status(200).json(messages);
     }
 
-    private void retrieveMessageByIdHandler(Context context) throws JsonMappingException, JsonProcessingException  {
-      
+    private void retrieveMessageByIdHandler(Context context) throws JsonMappingException, JsonProcessingException {
+
         int messageId = Integer.parseInt(context.pathParam("message_id"));
         Message message2 = messageService.retrieveMessageById(messageId);
         System.out.println(message2 + " this is message");
-       
+
         if (message2 != null) {
             context.status(200).json(message2);
         }
-      
 
-    } 
+    }
 
     private void deleteMessageByIdHandler(Context context) {
         int messageId = Integer.parseInt(context.pathParam("message_id"));
         Message message2 = messageService.deleteMessageById(messageId);
         System.out.println(message2 + " this is message");
-       
+
         if (message2 != null) {
             context.status(200).json(message2);
-        }    }
-     
-    private void updateMessageByIdHandler(Context context)  throws JsonProcessingException {
+        }
+    }
+
+    private void updateMessageByIdHandler(Context context) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Message message = mapper.readValue(context.body(), Message.class);
 
         int message_id = Integer.parseInt(context.pathParam("message_id"));
         Message updatedMessage = messageService.updatMessage(message_id, message);
         System.out.println(updatedMessage);
-        if(updatedMessage == null){
+        if (updatedMessage == null) {
             context.status(400);
-        }else{
+        } else {
             context.status(200).json(updatedMessage);
 
         }
     }
 
-  
-
     private void retrieveMessagesByAccountIdHandler(Context context) {
 
         int account_id = Integer.parseInt(context.pathParam("account_id"));
-        List<Message>  message2 = messageService.retrieveMessageUser(account_id);
+        List<Message> message2 = messageService.retrieveMessageUser(account_id);
         System.out.println(message2 + " this is message");
-       
+
         if (message2 != null) {
             context.status(200).json(message2);
         }
     }
-
-
 
 }

@@ -10,6 +10,9 @@ const MessageForm = () => {
     try {
       const response = await axios.post('http://localhost:8080/messages', {
         message_text: trimmedMessageText,
+        posted_by: 1,
+        time_posted_epoch: Math.floor(Date.now() / 1000)
+
       });
       console.log('Message created:', response.data);
       // Handle success, update message list, etc.
