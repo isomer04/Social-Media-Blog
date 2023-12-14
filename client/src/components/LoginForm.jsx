@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -15,16 +15,13 @@ const LoginForm = () => {
         password,
       });
       console.log('Login successful:', response.data);
-      // Handle success, store user token, redirect, etc.
-      // navigate('/', { replace: true });
       navigate(`/user/${username}`, { replace: true });
-
-
     } catch (error) {
       console.error('Login failed:', error.response.data);
       // Handle error, show error message, etc.
     }
   };
+  
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">

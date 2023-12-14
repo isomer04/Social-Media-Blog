@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Get the isLoggedIn status from the AuthContext
+  const { isLoggedIn, logout, username } = useAuth(); 
 
-  const handleLogin = () => {
-    // Logic for successful login
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    // Logic for logout
-    setIsLoggedIn(false);
-  };
+  console.log('Navbar - isLoggedIn:', isLoggedIn);
+  console.log('Navbar - username:', username);
 
   return (
     <nav className="bg-gray-800">
@@ -23,20 +19,19 @@ const Navbar = () => {
           </div>
           <div className="hidden sm:ml-6 sm:flex">
             <div className="flex space-x-4">
+              {/* Conditionally render "Register" and "Login" based on user login status */}
               {isLoggedIn ? (
+                <>
+                  <Link to="/register" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Register</Link>
+                  <Link to="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Login</Link>
+                </>
+              ) : (
                 <>
                   {/* Render links for logged-in users */}
                   <Link to="/messages" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Post Message</Link>
                   <Link to="/messages/all" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">All Messages</Link>
-                  <Link to="/messages/user" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">User Messages</Link>
-                  {/* Add a logout button */}
-                  <button onClick={handleLogout} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Logout</button>
-                </>
-              ) : (
-                <>
-                  {/* Render "Register" and "Login" links for not logged-in users */}
-                  <Link to="/register" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Register</Link>
-                  <Link to="/login" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Login</Link>
+                  <Link to={`/user/${username}`} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">User Messages</Link>
+                  <button onClick={logout} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Logout</button>
                 </>
               )}
             </div>

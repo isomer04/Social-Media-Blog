@@ -9,6 +9,9 @@ const Homepage = () => {
   const [userId, setUserId] = useState(null);
   const [userMessages, setUserMessages] = useState([]);
 
+  console.log('Homepage - username:', username);
+
+
   useEffect(() => {
     fetchUserIdByUsername();
   }, []);
@@ -16,25 +19,26 @@ const Homepage = () => {
   const fetchUserIdByUsername = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/accounts/username/${username}/userId`);
+      console.log('fetchUserIdByUsername Response:', response.data);
       setUserId(response.data.userId);
       fetchUserMessages(response.data.userId);
-      console.log('Response:', response.data);
-
     } catch (error) {
       console.error('Error fetching user ID:', error);
     }
   };
+  
+
 
   const fetchUserMessages = async (userId) => {
     try {
       const response = await axios.get(`http://localhost:8080/accounts/${userId}/messages`);
+      console.log('fetchUserMessages Response:', response.data);
       setUserMessages(response.data);
-      console.log('Response:', response.data);
-
     } catch (error) {
       console.error('Error fetching user messages:', error);
     }
   };
+  
 
   return (
     <div>
