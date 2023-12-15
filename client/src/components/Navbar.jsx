@@ -7,6 +7,16 @@ const Navbar = () => {
   // Get the isLoggedIn status from the AuthContext
   const { isLoggedIn, logout, username } = useAuth(); 
 
+  const handleLogout = () => {
+    try {
+      console.log('Logging out...');
+      logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+  
+
   console.log('Navbar - isLoggedIn:', isLoggedIn);
   console.log('Navbar - username:', username);
 
@@ -31,7 +41,7 @@ const Navbar = () => {
                   <Link to="/messages" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Post Message</Link>
                   <Link to="/allmessages" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">All Messages</Link>
                   <Link to={`/user/${username}`} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">User Messages</Link>
-                  <button onClick={logout} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Logout</button>
+                  <button onClick={handleLogout} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Logout</button>
                 </>
               )}
             </div>

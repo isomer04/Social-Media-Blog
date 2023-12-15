@@ -177,14 +177,22 @@ public class SocialMediaController {
     }
 
     private void retrieveMessagesByAccountIdHandler(Context context) {
-
-        int account_id = Integer.parseInt(context.pathParam("account_id"));
+        String account_id_str = context.pathParam("account_id");
+    
+        if (account_id_str == null || !account_id_str.matches("\\d+")) {
+            // Return a response indicating that the account_id is invalid
+            context.status(400).result("Invalid account_id");
+            return;
+        }
+    
+        int account_id = Integer.parseInt(account_id_str);
         List<Message> message2 = messageService.retrieveMessageUser(account_id);
         System.out.println(message2 + " this is message");
-
+    
         if (message2 != null) {
             context.status(200).json(message2);
         }
     }
+    
 
 }

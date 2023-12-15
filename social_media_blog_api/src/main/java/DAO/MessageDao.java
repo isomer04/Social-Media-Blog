@@ -143,30 +143,39 @@ public class MessageDao {
 
     public List<Message> getAllMessagesByUser(int posted_by) {
         Connection connection = ConnectionUtil.getConnection();
-
-        List<Message> messages =  new ArrayList<>();
+        List<Message> messages = new ArrayList<>();
+    
         try {
-
-            String sql = "SELECT * from Message WHERE posted_by = ?";
-
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-             preparedStatement.setInt(1, posted_by);
-
-                ResultSet rs = preparedStatement.executeQuery(); 
-                if (rs.next()) {
-                    Message message = new Message( rs.getInt("message_id"), rs.getInt("posted_by"), rs.getString("message_text"), rs.getLong("time_posted_epoch"));
-                    messages.add(message);
-                } else {
-                    throw new SQLException("Creating message failed, no ID obtained.");
-                }
-            
+            String sql = "SELECT * FROM Message WHERE posted_by = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, posted_by);
+            ResultSet rs = preparedStatement.executeQuery();
+    
+            while (rs.next()) {
+                Message message = new Message(
+                    rs.getInt("message_id"),
+                    rs.getInt("posted_by"),
+                    rs.getString("message_text"),
+                    rs.getLong("time_posted_epoch")
+                );
+                messages.add(message);
+            }
+    
         } catch (SQLException e) {
             e.printStackTrace();
-           
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+    
         return messages;
     }
+    
 
    
 
