@@ -55,6 +55,7 @@ public class SocialMediaController {
         app.post("/register", this::registerHandler);
         app.post("/login", this::loginHandler);
         app.get("/accounts/username/{username}/userId", this::retrieveUserIdByUsernameHandler);
+        app.get("/allmessages", this::showAllMessagesHandler);
         app.post("/messages", this::messagesCreationHandler);
         app.get("/messages", this::messagesRetrieveHandler);
         app.get("/messages/{message_id}", this::retrieveMessageByIdHandler);
@@ -109,6 +110,16 @@ public class SocialMediaController {
             context.status(200).result(String.valueOf(userId));
         } else {
             throw new NotFoundResponse("User not found");
+        }
+    }
+
+    private void showAllMessagesHandler(Context context) {
+        List<Message> allMessages = messageService.retrievMessage();
+
+        if (allMessages != null) {
+            context.status(200).json(allMessages);
+        } else {
+            context.status(404).result("No messages found");
         }
     }
 

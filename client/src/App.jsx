@@ -18,7 +18,7 @@ function App() {
             <Route path="/user/:username" element={<Homepage />} />
             <Route path="/register" element={<RegistrationForm />} />
             <Route path="/messages" element={<MessageForm />} />
-            <Route path="/messages/all" element={<MessageList />} />
+            <Route path="/allmessages" element={<MessageList />} />
             <Route path="/messages/user" element={<UserMessages />} />
             <Route path="/" element={<LoginForm />} />
           </Routes>

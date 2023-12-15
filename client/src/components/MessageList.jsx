@@ -8,7 +8,8 @@ const MessageList = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/messages');
+        const response = await axios.get('http://localhost:8080/allmessages'); // Updated endpoint
+        console.log('Response from backend:', response.data);
         setMessages(response.data);
       } catch (error) {
         console.error('Error fetching messages:', error);
