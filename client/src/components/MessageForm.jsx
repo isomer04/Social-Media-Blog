@@ -3,9 +3,9 @@ import axios from 'axios';
 import {useAuth} from '../AuthContext.jsx';
 
 
-const MessageForm = () => {
+const MessageForm = ({ userId }) => {
   const [messageText, setMessageText] = useState('');
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   const handleCreateMessage = async () => {
     const trimmedMessageText = messageText.trim();
@@ -13,14 +13,12 @@ const MessageForm = () => {
     try {
       const response = await axios.post('http://localhost:8080/messages', {
         message_text: trimmedMessageText,
-        posted_by: user.id, // Assuming your user object has an 'id' property
+        posted_by: userId,
         time_posted_epoch: Math.floor(Date.now() / 1000)
       });
       console.log('Message created:', response.data);
-      // Handle success, update message list, etc.
     } catch (error) {
       console.error('Message creation failed:', error.response.data);
-      // Handle error, show error message, etc.
     }
   };
 

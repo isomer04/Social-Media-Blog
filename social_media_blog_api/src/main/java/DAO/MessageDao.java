@@ -21,8 +21,9 @@ public class MessageDao {
 
     public Message createMessage(Message message) {
         String sql = "INSERT INTO Message (posted_by, message_text, time_posted_epoch) VALUES (?, ?, ?)";
+        Connection connection = ConnectionUtil.getConnection();
+
         try (
-                Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             preparedStatement.setInt(1, message.getPosted_by());
@@ -49,8 +50,9 @@ public class MessageDao {
 
     public List<Message> getAllMessages() {
         List<Message> messages = new ArrayList<>();
+        Connection connection = ConnectionUtil.getConnection();
+
         try (
-                Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT * from Message");
                 ResultSet rs = preparedStatement.executeQuery()
         ) {
@@ -70,8 +72,9 @@ public class MessageDao {
     }
 
     public Message getMessagetById(int id) {
+        Connection connection = ConnectionUtil.getConnection();
+
         try (
-                Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement("Select * from Message where message_id = ?")
         ) {
             preparedStatement.setInt(1, id);
@@ -88,8 +91,9 @@ public class MessageDao {
     }
 
     public Message deleteMessagetById(int id) {
+        Connection connection = ConnectionUtil.getConnection();
+
         try (
-                Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement("Delete FROM Message where message_id = ?")
         ) {
             preparedStatement.setInt(1, id);
@@ -105,8 +109,9 @@ public class MessageDao {
     }
 
     public Message updateMessage(int message_id, Message message) {
+        Connection connection = ConnectionUtil.getConnection();
+
         try (
-                Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement("update Message set  message_text = ? where message_id = ?")
         ) {
             preparedStatement.setString(1, message.getMessage_text());
