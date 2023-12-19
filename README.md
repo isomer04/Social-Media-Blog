@@ -45,9 +45,26 @@ Before you begin, ensure you have the following installed:
    git clone https://github.com/isomer04/social-media-app.git
    ```
 
+2. Navigate to the project directory:
+
+  ```bash
+  cd social-media-app
+```
+3. Install dependencies:
+  ```bash
+  npm install
+  ```
+
+## Usage
+To run the Social Media App, use the following command:
+
+```bash
+npm start
+```
+
+Visit http://localhost:3000 in your web browser to access the application.
 
 
-   Visit http://localhost:3000 in your web browser to access the application.
 
 ## Database Configuration
 Ensure that you have a MySQL database set up with the following configuration:
