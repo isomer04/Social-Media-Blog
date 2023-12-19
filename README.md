@@ -42,5 +42,41 @@ Before you begin, ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/social-media-app.git
+   git clone https://github.com/isomer04/social-media-app.git
    ```
+
+
+
+   Visit http://localhost:3000 in your web browser to access the application.
+
+## Database Configuration
+Ensure that you have a MySQL database set up with the following configuration:
+
+- Database name: social_media_db
+- Tables: accounts, messages
+
+For table schema details, refer to the SQL commands in the Database Configuration section of this README.
+
+## API Endpoints
+- POST /register: Register a new user
+- POST /login: Log in as an existing user
+- GET /accounts/username/{username}/userId: Retrieve user ID by username
+- GET /allmessages: Retrieve all messages
+- POST /messages: Create a new message
+- GET /messages: Retrieve all user messages
+- GET /messages/{message_id}: Retrieve a message by ID
+- DELETE /messages/{message_id}: Delete a message by ID
+- PATCH /messages/{message_id}: Update a message by ID
+
+For detailed API documentation, refer to the API Endpoints section of this README.
+
+## Contributing
+We welcome contributions! Please follow the Contributing Guidelines for details on how to contribute to this project.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+The Social Media App was built using React and Java with Javalin.
+Special thanks to the developers of axios for simplifying HTTP requests.
+
