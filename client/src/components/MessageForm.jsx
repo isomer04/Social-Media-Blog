@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useAuth} from '../AuthContext.jsx';
 
 
-const MessageForm = ({ userId }) => {
+const MessageForm = ({ userId, onCreateMessage  }) => {
   const [messageText, setMessageText] = useState('');
   // const { user } = useAuth();
 
@@ -17,6 +17,9 @@ const MessageForm = ({ userId }) => {
         time_posted_epoch: Math.floor(Date.now() / 1000)
       });
       console.log('Message created:', response.data);
+
+      onCreateMessage(response.data);
+      setMessageText(''); 
     } catch (error) {
       console.error('Message creation failed:', error.response.data);
     }
