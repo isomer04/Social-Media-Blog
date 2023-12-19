@@ -1,21 +1,52 @@
+// import { createContext, useContext, useState } from 'react';
+// import PropTypes from 'prop-types';
+
+// const AuthContext = createContext();
+
+// export const AuthProvider = ({ children }) => {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+//   const login = () => {
+//     setIsLoggedIn(true);
+//   };
+
+//   const logout = () => {
+//     setIsLoggedIn(false);
+//   };
+
+//   return (
+//     <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// };
+
+// AuthProvider.propTypes = {
+//   children: PropTypes.node.isRequired,
+// };
+
+// export const useAuth = () => {
+//   return useContext(AuthContext);
+// };
+
 import { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const login = () => {
-    setIsLoggedIn(true);
+  const login = (userData) => {
+    setUser(userData);
   };
 
   const logout = () => {
-    setIsLoggedIn(false);
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

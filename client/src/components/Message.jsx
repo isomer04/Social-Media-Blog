@@ -11,7 +11,6 @@ const Message = ({ message, currentUserId, onUpdate, onDelete }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:8080/messages/${message.message_id}`);
-      // If the deletion is successful, notify the parent component to update the messages
       onDelete(message.message_id);
     } catch (error) {
       console.error('Error deleting message:', error);
