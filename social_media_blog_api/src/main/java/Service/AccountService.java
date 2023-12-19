@@ -31,5 +31,9 @@ public class AccountService {
         
         return -1; // Indicate user not found
     }
+
+    public String retrieveUsernameById(int userId) {
+        return accountDAO.retrieveUsernameById(userId);
+    }
     
 }

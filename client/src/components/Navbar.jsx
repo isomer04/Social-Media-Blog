@@ -40,7 +40,7 @@ const Navbar = () => {
                   {/* Render links for logged-in users */}
                   <Link to="/messages" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Post Message</Link>
                   <Link to="/allmessages" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">All Messages</Link>
-                  <Link to={`/user/${username}`} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">User Messages</Link>
+                  {/* <Link to={`/user/${username}`} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">User Messages</Link> */}
                   <button onClick={handleLogout} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Logout</button>
                 </>
               )}

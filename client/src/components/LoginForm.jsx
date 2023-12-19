@@ -18,7 +18,6 @@ const LoginForm = () => {
       navigate(`/user/${username}`, { replace: true });
     } catch (error) {
       console.error('Login failed:', error.response.data);
-      // Handle error, show error message, etc.
     }
   };
   

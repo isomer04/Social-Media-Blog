@@ -142,22 +142,22 @@ public class SocialMediaController {
     private void retrieveMessageByIdHandler(Context context) throws JsonMappingException, JsonProcessingException {
 
         int messageId = Integer.parseInt(context.pathParam("message_id"));
-        Message message2 = messageService.retrieveMessageById(messageId);
-        System.out.println(message2 + " this is message");
+        Message messages = messageService.retrieveMessageById(messageId);
+        System.out.println(messages + " this is message");
 
-        if (message2 != null) {
-            context.status(200).json(message2);
+        if (messages != null) {
+            context.status(200).json(messages);
         }
 
     }
 
     private void deleteMessageByIdHandler(Context context) {
         int messageId = Integer.parseInt(context.pathParam("message_id"));
-        Message message2 = messageService.deleteMessageById(messageId);
-        System.out.println(message2 + " this is message");
+        Message messages = messageService.deleteMessageById(messageId);
+        System.out.println(messages + " this is message");
 
-        if (message2 != null) {
-            context.status(200).json(message2);
+        if (messages != null) {
+            context.status(200).json(messages);
         }
     }
 
@@ -186,11 +186,15 @@ public class SocialMediaController {
         }
     
         int account_id = Integer.parseInt(account_id_str);
-        List<Message> message2 = messageService.retrieveMessageUser(account_id);
-        System.out.println(message2 + " this is message");
+        List<Message> messages = messageService.retrieveMessageUser(account_id);
+        System.out.println(messages + " this is message");
+
+        // Modify each message to include the name
+        messages.forEach(message -> message.setPostedByName(accountService.retrieveUsernameById(message.getPosted_by())));
+
     
-        if (message2 != null) {
-            context.status(200).json(message2);
+        if (messages != null) {
+            context.status(200).json(messages);
         }
     }
     

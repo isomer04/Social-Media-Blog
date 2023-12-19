@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.h2.engine.Database;
+
 import Model.Account;
 import Util.ConnectionUtil;
 
@@ -125,6 +127,27 @@ public class AccountDao {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public String retrieveUsernameById(int userId) {
+        String username = null;
+        String sql = "SELECT username FROM accounts WHERE account_id = ?";
+
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, userId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    username = resultSet.getString("username");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+        }
+
+        return username;
     }
 
    
