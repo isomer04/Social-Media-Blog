@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 const RegistrationForm = () => {
+  const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -14,8 +16,10 @@ const RegistrationForm = () => {
         username,
         password,
       });
+      
+      login(response.data);
       console.log('Registration successful:', response.data);
-      navigate('/', { replace: true });
+      navigate(`/user/${response.data.username}`, { replace: true });
     } catch (error) {
       console.error('Registration failed:', error.response.data);
     }
