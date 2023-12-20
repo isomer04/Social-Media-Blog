@@ -54,13 +54,13 @@ Before you begin, ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/isomer04/social-media-app.git
+   git clone https://github.com/isomer04/Social-Media-Blog.git
    ```
 
 2. Navigate to the project directory:
 
   ```bash
-  cd social-media-app
+  cd Social-Media-Blog
 ```
 3. Install dependencies:
   ```bash
