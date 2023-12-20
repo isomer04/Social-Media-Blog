@@ -27,6 +27,18 @@ The Social Media App provides a platform for users to share messages, engage wit
 - Viewing all messages
 - Updating and deleting messages
 
+ ## Skills Used
+
+In the development of the Social Media App, the following technologies and tools were utilized:
+
+- React
+- Java
+- Javalin
+- MySQL
+- Tailwind CSS
+- JDBC
+
+
 ## Getting Started
 
 ### Prerequisites
