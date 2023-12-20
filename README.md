@@ -38,6 +38,11 @@ In the development of the SocMedia, the following technologies and tools were ut
 - Tailwind CSS
 - JDBC
 
+## Demo
+
+  
+![socMedia](https://github.com/isomer04/Social-Media-Blog/assets/43922158/84b29728-88a8-46e8-9047-45ab2dd836ed)
+
 
 ## Getting Started
 
