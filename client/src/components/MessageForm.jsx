@@ -35,7 +35,7 @@ const MessageForm = ({ userId, onCreateMessage  }) => {
         onChange={(e) => setMessageText(e.target.value)}
       />
       <button
-        className="bg-blue-500 text-white py-2 px-4 mt-2 rounded hover:bg-blue-600"
+        className=" text-white py-2 px-4 mt-2 rounded hover:bg-blue-600"
         onClick={handleCreateMessage}
       >
         Post

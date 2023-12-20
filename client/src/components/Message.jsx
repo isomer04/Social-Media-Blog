@@ -42,7 +42,7 @@ const Message = ({ message, currentUserId, onUpdate, onDelete }) => {
         <div className="flex mt-2">
           <button
             onClick={handleUpdate}
-            className="text-white hover:text-blue-700 mr-2"
+            className="text-white mr-2"
           >
             Update
           </button>
@@ -50,9 +50,10 @@ const Message = ({ message, currentUserId, onUpdate, onDelete }) => {
             onClick={handleDelete}
             style={{
               color: "#f8f8f8",
-              background: "red",
+              background: "gray",
               textDecoration: "underline",
               cursor: "pointer",
+              marginRight: '2px'
             }}
           >
             Cancel

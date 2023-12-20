@@ -45,7 +45,7 @@ const RegistrationForm = () => {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <div className="bg-white p-6 rounded shadow mb-4">
-          <h2 className="text-xl mb-2">Registration Form</h2>
+          <h2 className="text-xl font-semibold mb-2">Registration Form</h2>
           <div >
             <input
               type="text"
@@ -68,7 +68,7 @@ const RegistrationForm = () => {
           </div>
           <button
             onClick={handleRegister}
-            className="w-full rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="w-full rounded-md  bg-gray-800 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Register
           </button>
