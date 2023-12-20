@@ -8,12 +8,16 @@ import MessageList from "./components/MessageList";
 import UserMessages from "./components/UserMessages";
 import Footer from "./components/Footer";
 
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthProvider } from './AuthContext.jsx';
+
 function App() {
   return (
+    <AuthProvider>
+      <Router>
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <div className="container mx-auto p-4 flex-grow">
-          {" "}
           <Routes>
             <Route path="/user/:username" element={<Homepage />} />
             <Route path="/register" element={<RegistrationForm />} />
@@ -25,6 +29,9 @@ function App() {
         </div>
         <Footer />
       </div>
+      </Router>
+    </AuthProvider>
+      
   );
 }
 

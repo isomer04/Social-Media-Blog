@@ -190,7 +190,7 @@ public class SocialMediaController {
         System.out.println(messages + " this is message");
 
         // Modify each message to include the name
-        messages.forEach(message -> message.setPostedByName(accountService.retrieveUsernameById(message.getPosted_by())));
+        // messages.forEach(message -> message.setPostedByName(accountService.retrieveUsernameById(message.getPosted_by())));
 
     
         if (messages != null) {

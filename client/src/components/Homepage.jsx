@@ -35,7 +35,7 @@ const Homepage = () => {
   const fetchUserMessages = async (userId) => {
     try {
       const response = await axios.get(`http://localhost:8080/accounts/${userId}/messages`);
-      console.log('fetchUserMessages Response:', response.data);
+      console.log('fetchUserMessages Response:', response);
       setUserMessages(response.data);
     } catch (error) {
       console.error('Error fetching user messages:', error);
@@ -88,18 +88,22 @@ const Homepage = () => {
       <h2 className="text-xl font-semibold mb-4">Hi {username}</h2>
       <MessageForm userId={userId} onCreateMessage={handleCreateMessage} />
       <h3 className="text-lg font-semibold mt-4">Your Messages</h3>
-      {userMessages.map((message) => (
-        <Message
-          key={message.message_id}
-          message={message}
-          currentUserId={userId}
-          onUpdate={() => openModal(message)}
-          onDelete={handleDeleteMessage}
-        />
-      ))}
+      {Array.isArray(userMessages) && userMessages.length > 0 ? (
+        userMessages.map((message) => (
+          <Message
+            key={message.message_id}
+            message={message}
+            currentUserId={userId}
+            onUpdate={() => openModal(message)}
+            onDelete={handleDeleteMessage}
+          />
+        ))
+      ) : (
+        <p>No messages found.</p>
+      )}
 
       {isModalOpen && (
-        <UpdateMessageModal onUpdate={handleUpdateMessage} onClose={closeModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage}  />
+        <UpdateMessageModal onUpdate={handleUpdateMessage} onClose={closeModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} />
       )}
     </div>
   );

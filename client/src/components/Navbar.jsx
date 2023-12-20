@@ -1,47 +1,85 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
-
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useAuth } from "../AuthContext.jsx";
 
 const Navbar = () => {
-  // Get the isLoggedIn status from the AuthContext
-  const { isLoggedIn, logout, username } = useAuth(); 
+  const { isLoggedIn, logout, username } = useAuth();
+  const { username: routeUsername } = useParams();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false); // Set loading to false once the authentication state is available
+  }, [isLoggedIn, username]);
 
   const handleLogout = () => {
     try {
-      console.log('Logging out...');
+      console.log("Logging out...");
       logout();
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     }
   };
-  
-
-  console.log('Navbar - isLoggedIn:', isLoggedIn);
-  console.log('Navbar - username:', username);
 
   return (
     <nav className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="text-white text-xl font-semibold">Social Media App</Link>
+            <Link to="/" className="text-white text-xl font-semibold">
+              Social Media App
+            </Link>
           </div>
           <div className="hidden sm:ml-6 sm:flex">
             <div className="flex space-x-4">
-              {/* Conditionally render "Register" and "Login" based on user login status */}
-              {isLoggedIn ? (
-                <>
-                  <Link to="/register" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Register</Link>
-                  <Link to="/" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Login</Link>
-                </>
+              {loading ? (
+                <div>Loading...</div>
               ) : (
                 <>
-                  {/* Render links for logged-in users */}
-                  <Link to="/messages" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Post Message</Link>
-                  <Link to="/allmessages" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">All Messages</Link>
-                  {/* <Link to={`/user/${username}`} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">User Messages</Link> */}
-                  <button onClick={handleLogout} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">Logout</button>
+                  {isLoggedIn ? (
+                    <>
+                      {/* Render links for logged-in users */}
+                      <Link
+                        to="/messages"
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium"
+                      >
+                        Post Message
+                      </Link>
+                      <Link
+                        to="/allmessages"
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium"
+                      >
+                        All Messages
+                      </Link>
+                      {/* <Link to={`/user/${username}`} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium">User Messages</Link> */}
+                      <Link
+                        to={`/user/${username}`}
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium"
+                      >
+                        Your Messages
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium"
+                      >
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Link
+                        to="/register"
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium"
+                      >
+                        Register
+                      </Link>
+                      <Link
+                        to="/"
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium"
+                      >
+                        Login
+                      </Link>
+                    </>
+                  )}
                 </>
               )}
             </div>
