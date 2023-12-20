@@ -1,6 +1,6 @@
-# Social Media App
+# SocMedia
 
-Welcome to the Social Media App! This web application allows users to post messages, view all messages, and perform various social interactions.
+Welcome to the SocMedia! This web application allows users to post messages, view all messages, and perform various social interactions.
 
 ## Table of Contents
 
@@ -18,7 +18,7 @@ Welcome to the Social Media App! This web application allows users to post messa
 
 ## Introduction
 
-The Social Media App provides a platform for users to share messages, engage with content, and connect with others. This README will guide you through the setup and usage of the application.
+The SocMedia provides a platform for users to share messages, engage with content, and connect with others. This README will guide you through the setup and usage of the application.
 
 ## Features
 
@@ -29,7 +29,7 @@ The Social Media App provides a platform for users to share messages, engage wit
 
  ## Skills Used
 
-In the development of the Social Media App, the following technologies and tools were utilized:
+In the development of the SocMedia, the following technologies and tools were utilized:
 
 - React
 - Java
@@ -68,7 +68,7 @@ Before you begin, ensure you have the following installed:
   ```
 
 ## Usage
-To run the Social Media App, use the following command:
+To run the SocMedia, use the following command:
 
 ```bash
 npm start
@@ -106,6 +106,6 @@ We welcome contributions! Please follow the Contributing Guidelines for details 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
-The Social Media App was built using React and Java with Javalin.
+The SocMedia was built using React and Java with Javalin.
 Special thanks to the developers of axios for simplifying HTTP requests.
 
