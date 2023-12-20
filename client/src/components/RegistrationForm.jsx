@@ -18,7 +18,6 @@ const RegistrationForm = () => {
       navigate('/', { replace: true });
     } catch (error) {
       console.error('Registration failed:', error.response.data);
-      // Handle error, show error message, etc.
     }
   };
 
@@ -36,7 +35,7 @@ const RegistrationForm = () => {
         <p className="mt-2 text-center text-sm text-gray-600">
           Or{' '}
           <Link
-            to="/"
+            to="/login"
             className="font-medium text-indigo-600 hover:text-indigo-500"
           >
             sign in to your account

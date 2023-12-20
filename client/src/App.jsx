@@ -24,7 +24,7 @@ function App() {
             <Route path="/messages" element={<MessageForm />} />
             <Route path="/allmessages" element={<MessageList />} />
             <Route path="/messages/user" element={<UserMessages />} />
-            <Route path="/" element={<LoginForm />} />
+            <Route path="/login" element={<LoginForm />} />
           </Routes>
         </div>
         <Footer />

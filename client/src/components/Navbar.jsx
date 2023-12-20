@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext.jsx";
 
 const Navbar = () => {
   const { isLoggedIn, logout, username } = useAuth();
   const { username: routeUsername } = useParams();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(false); // Set loading to false once the authentication state is available
   }, [isLoggedIn, username]);
 
+  const displayUsername = username || routeUsername;
+
+  console.log(" displayUsername " + displayUsername);
+
   const handleLogout = () => {
     try {
       console.log("Logging out...");
       logout();
+      navigate("/login");
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -25,7 +31,10 @@ const Navbar = () => {
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="text-white text-xl font-semibold">
+            <Link
+              to={isLoggedIn ? `/user/${username}` : "/"}
+              className="text-white text-xl font-semibold"
+            >
               Social Media App
             </Link>
           </div>
@@ -73,7 +82,7 @@ const Navbar = () => {
                         Register
                       </Link>
                       <Link
-                        to="/"
+                        to="/login"
                         className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-sm font-medium"
                       >
                         Login
